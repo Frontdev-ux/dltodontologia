@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DLT Odontología | Landing demo</title>
+  <meta name="description" content="Landing demo premium para DLT Odontología en Palermo, CABA. Atención odontológica integral con enfoque humano, estético y profesional." />
+  <style>
+    :root {
+      --bg: #f6f4f1;
+      --surface: #ffffff;
+      --surface-2: #f0ece6;
+      --text: #243036;
+      --muted: #627179;
+      --line: #d9d4ce;
+      --accent: #8fa7a1;
+      --accent-2: #b7c7c3;
+      --dark: #1e292e;
+      --success: #2b5f54;
+      --shadow: 0 20px 60px rgba(25, 35, 39, 0.08);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #fbfaf8 0%, var(--bg) 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(14px);
+      background: rgba(251, 250, 248, 0.84);
+      border-bottom: 1px solid rgba(217, 212, 206, 0.7);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at top, #ffffff 0%, #ece7e0 100%);
+      color: var(--dark);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 0.98rem;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-copy span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .btn,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 600;
+      transition: 0.25s ease;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn {
+      background: var(--dark);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 72px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(143, 167, 161, 0.12);
+      color: var(--success);
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 { margin: 0 0 16px; line-height: 1.1; }
+
+    h1 {
+      font-size: clamp(2.55rem, 6vw, 4.85rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .lead {
+      font-size: 1.12rem;
+      color: var(--muted);
+      max-width: 64ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 28px 0 26px;
+    }
+
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .fact {
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(217, 212, 206, 0.9);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .fact strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .fact span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f7f4f0 100%);
+      border: 1px solid rgba(217, 212, 206, 0.95);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -50px -70px auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(183, 199, 195, 0.65) 0%, rgba(183, 199, 195, 0) 72%);
+    }
+
+    .card-badge {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(255,255,255,0.88);
+      font-size: 0.88rem;
+      margin-bottom: 18px;
+    }
+
+    .feature-list,
+    .check-list {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .feature-list li,
+    .check-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--text);
+    }
+
+    .feature-list li::before,
+    .check-list li::before {
+      content: "•";
+      color: var(--success);
+      font-size: 1.2rem;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    section { padding: 52px 0; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 1.02rem;
+      margin: 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .service-card p,
+    .card p,
+    .note,
+    .muted {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-size: 0.9rem;
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    .steps {
+      counter-reset: step;
+      display: grid;
+      gap: 14px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 16px;
+      align-items: start;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step, decimal-leading-zero);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(143, 167, 161, 0.18);
+      color: var(--dark);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .testimonial {
+      background: linear-gradient(180deg, #ffffff 0%, #f9f6f2 100%);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .testimonial .quote {
+      font-size: 1.02rem;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .testimonial .meta {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .cta-band {
+      background: linear-gradient(120deg, #1f2a30 0%, #304048 100%);
+      color: white;
+      border-radius: 30px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .cta-band p { margin: 0; color: rgba(255,255,255,0.8); }
+
+    .faq {
+      display: grid;
+      gap: 12px;
+    }
+
+    details {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+    details p { color: var(--muted); margin: 12px 0 0; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+    }
+
+    .contact-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 16px;
+      margin: 18px 0 0;
+    }
+
+    .contact-item small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .map-box {
+      min-height: 100%;
+      background: linear-gradient(180deg, #ffffff 0%, #f1ede8 100%);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .mini-note {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 32px 0 50px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .floating-wa {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 50;
+      box-shadow: var(--shadow);
+    }
+
+    .floating-wa .btn { padding: 14px 18px; }
+
+    @media (max-width: 1040px) {
+      .hero-grid,
+      .section-head,
+      .contact-grid,
+      .grid-3,
+      .grid-2,
+      .testimonials,
+      .cta-band {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links { display: none; }
+      .quick-facts { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      .hero { padding-top: 42px; }
+      .topbar-inner { gap: 12px; }
+      .brand-copy span { display: none; }
+      h1 { font-size: 2.5rem; }
+      .btn, .btn-secondary { width: 100%; }
+      .hero-actions { flex-direction: column; }
+      .cta-band { padding: 26px; }
+      .step { grid-template-columns: 1fr; }
+      .floating-wa { left: 16px; right: 16px; }
+      .floating-wa .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#inicio" class="brand" aria-label="DLT Odontología">
+        <div class="brand-mark">DL</div>
+        <div class="brand-copy">
+          <strong>DLT Odontología</strong>
+          <span>Odontología integral en Palermo, CABA</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#tratamientos">Tratamientos</a>
+        <a href="#enfoque">Enfoque</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <a class="btn" href="https://wa.me/5490000000000?text=Hola%20DLT%20Odontolog%C3%ADa%2C%20quisiera%20consultar%20por%20un%20turno." target="_blank" rel="noopener noreferrer">Sacar turno por WhatsApp</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Palermo, CABA · atención personalizada · foco funcional + estético</div>
+          <h1>Una odontología pensada para que te sientas cuidado desde el primer contacto.</h1>
+          <p class="lead">
+            En DLT Odontología priorizamos una atención humana, clara y profesional para ayudarte a mejorar tu sonrisa con tratamientos personalizados, explicados paso a paso y en un entorno moderno, prolijo y confiable.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn" href="https://wa.me/5490000000000?text=Hola%20DLT%20Odontolog%C3%ADa%2C%20quiero%20sacar%20un%20turno." target="_blank" rel="noopener noreferrer">Quiero sacar un turno</a>
+            <a class="btn-secondary" href="#tratamientos">Ver tratamientos</a>
+          </div>
+
+          <div class="quick-facts" aria-label="Datos rápidos">
+            <div class="fact">
+              <strong>Ubicación</strong>
+              <span>Soler 3644, Palermo · local a la calle</span>
+            </div>
+            <div class="fact">
+              <strong>Ideal para</strong>
+              <span>Pacientes que buscan trato humano, estética y funcionalidad</span>
+            </div>
+            <div class="fact">
+              <strong>Canal principal</strong>
+              <span>Consulta y turnos por WhatsApp</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Resumen de propuesta">
+          <div class="card-badge">Consultorio boutique · no masivo · experiencia cuidada</div>
+          <h3>Qué transmite esta propuesta</h3>
+          <ul class="feature-list">
+            <li>Diagnóstico y explicación clara antes de avanzar con el tratamiento.</li>
+            <li>Abordaje integral con criterio estético y funcional.</li>
+            <li>Seguimiento cercano para que el paciente entienda y acompañe su proceso.</li>
+            <li>Entorno sereno y profesional, especialmente valioso para quienes llegan con miedo o malas experiencias previas.</li>
+          </ul>
+          <div class="pill-row" aria-label="Etiquetas">
+            <span class="pill">Blanqueamiento dental</span>
+            <span class="pill">Diseño de sonrisa</span>
+            <span class="pill">Resina estética</span>
+            <span class="pill">Incrustaciones</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="tratamientos">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Tratamientos pensados para cuidar función, salud y estética</h2>
+          </div>
+          <p>
+            La landing debe dejar claro que no se trata solo de “verse bien”, sino de resolver cada caso con criterio clínico, naturalidad y seguimiento.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card service-card">
+            <h3>Blanqueamiento dental</h3>
+            <p>Para quienes buscan una sonrisa más luminosa con un enfoque profesional, seguro y alineado con la salud dental.</p>
+          </article>
+          <article class="card service-card">
+            <h3>Diseño de sonrisa</h3>
+            <p>Planificación personalizada para mejorar armonía, proporción y naturalidad sin perder funcionalidad.</p>
+          </article>
+          <article class="card service-card">
+            <h3>Restauraciones con resina estética</h3>
+            <p>Soluciones conservadoras para recuperar forma, función y apariencia con resultados integrados al diente.</p>
+          </article>
+          <article class="card service-card">
+            <h3>Incrustaciones</h3>
+            <p>Alternativa precisa y duradera para reforzar piezas dentarias comprometidas, cuidando anatomía y resistencia.</p>
+          </article>
+          <article class="card service-card">
+            <h3>Odontología integral</h3>
+            <p>Evaluación completa para acompañar prevención, diagnóstico y resolución en una misma experiencia de atención.</p>
+          </article>
+          <article class="card service-card">
+            <h3>Plan complementario</h3>
+            <p>Espacio opcional para medicina estética solo si la marca decide integrarla sin correr el foco principal odontológico.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="enfoque">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Un enfoque más humano para pacientes que no quieren sentirse “uno más”</h2>
+          </div>
+          <p>
+            El diferencial no está solamente en el tratamiento. Está en cómo se explica, cómo se acompaña y cómo se vive la consulta.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Lo que hace distinta la experiencia</h3>
+            <ul class="check-list">
+              <li>Atención personalizada y cercana.</li>
+              <li>Explicación clara de cada procedimiento.</li>
+              <li>Seguimiento del paciente durante el proceso.</li>
+              <li>Equilibrio entre resultado estético y criterio funcional.</li>
+              <li>Clima de confianza para personas con ansiedad o miedo al dentista.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Para quién está pensada esta propuesta</h3>
+            <ul class="check-list">
+              <li>Adultos que quieren mejorar su sonrisa sin caer en soluciones impersonales.</li>
+              <li>Pacientes que valoran la prolijidad, la estética y el acompañamiento.</li>
+              <li>Personas que priorizan un consultorio de barrio premium en Palermo/CABA.</li>
+              <li>Quienes ya tuvieron malas experiencias y necesitan volver a confiar.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencia">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Cómo sería el recorrido del paciente en la landing</h2>
+          </div>
+          <p>
+            La conversión debe sentirse natural: primero confianza, después claridad clínica y finalmente una invitación simple a escribir por WhatsApp.
+          </p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div>
+              <h3>Conectar desde la confianza</h3>
+              <p class="muted">Hero con promesa humana, ubicación, CTA visible y una lectura inmediata de profesionalismo.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div>
+              <h3>Ordenar tratamientos y casos</h3>
+              <p class="muted">Mostrar servicios principales con lenguaje claro, sin saturar con tecnicismos ni una lista interminable.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div>
+              <h3>Reducir objeciones</h3>
+              <p class="muted">Explicar que la atención es personalizada, que se acompaña al paciente y que se prioriza el confort.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div>
+              <h3>Cerrar con facilidad</h3>
+              <p class="muted">CTA directo a WhatsApp, ubicación clara, microcopy cálido y posibilidad de consulta inicial sin fricción.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Prueba social">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Prueba social que eleva confianza sin exagerar</h2>
+          </div>
+          <p>
+            Esta versión deja textos modelo para reemplazar por reseñas reales, fotos del consultorio y antes/después aprobados por la marca.
+          </p>
+        </div>
+
+        <div class="testimonials">
+          <article class="testimonial">
+            <div class="quote">“Me sentí escuchada desde el primer momento. Me explicaron todo con claridad y el resultado quedó súper natural.”</div>
+            <div class="meta">Reseña modelo · reemplazar por testimonio real validado</div>
+          </article>
+          <article class="testimonial">
+            <div class="quote">“Después de una mala experiencia anterior, volver al dentista me costaba mucho. Acá encontré paciencia, contención y profesionalismo.”</div>
+            <div class="meta">Reseña modelo · ideal para paciente con miedo</div>
+          </article>
+          <article class="testimonial">
+            <div class="quote">“El consultorio transmite prolijidad y confianza. El tratamiento fue muy cuidado y el seguimiento hizo toda la diferencia.”</div>
+            <div class="meta">Reseña modelo · reemplazar por reseña pública verificable</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <h2>¿Querés hacer una consulta o pedir tu turno?</h2>
+            <p>Escribinos por WhatsApp y te orientamos de forma simple, cálida y directa.</p>
+          </div>
+          <a class="btn" href="https://wa.me/5490000000000?text=Hola%20DLT%20Odontolog%C3%ADa%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Preguntas frecuentes">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Preguntas frecuentes</h2>
+          </div>
+          <p>
+            Una buena sección FAQ ayuda a bajar ansiedad, ordenar expectativas y reforzar la sensación de atención cuidada.
+          </p>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>¿Puedo escribir por WhatsApp antes de decidir un turno?</summary>
+            <p>Sí. La propuesta de la landing es facilitar un primer contacto simple para despejar dudas y orientar al paciente según su necesidad.</p>
+          </details>
+          <details>
+            <summary>¿Atienden casos estéticos y también tratamientos integrales?</summary>
+            <p>Sí. El posicionamiento combina odontología integral con procedimientos de fuerte componente estético, siempre priorizando criterio funcional.</p>
+          </details>
+          <details>
+            <summary>¿Es una buena opción si me da miedo ir al dentista?</summary>
+            <p>Ese debe ser uno de los mensajes centrales: atención humana, explicación clara y una experiencia más cuidada para reducir ansiedad.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container contact-grid">
+        <div class="contact-panel">
+          <h2>Contacto y ubicación</h2>
+          <p class="muted">Información presentada de forma clara para facilitar la decisión y reducir fricción al momento de escribir o llegar.</p>
+          <div class="contact-list">
+            <div class="contact-item">
+              <small>Dirección</small>
+              <strong>Soler 3644, Palermo, Ciudad Autónoma de Buenos Aires</strong>
+            </div>
+            <div class="contact-item">
+              <small>Tipo de acceso</small>
+              <strong>Local a la calle</strong>
+            </div>
+            <div class="contact-item">
+              <small>Canal principal</small>
+              <strong>WhatsApp para consultas y turnos</strong>
+            </div>
+            <div class="contact-item">
+              <small>Instagram</small>
+              <strong>@dltodontologia</strong>
+            </div>
+          </div>
+          <div class="hero-actions" style="margin-top: 24px; margin-bottom: 0;">
+            <a class="btn" href="https://wa.me/5490000000000?text=Hola%20DLT%20Odontolog%C3%ADa%2C%20quiero%20consultar%20por%20tratamientos." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
+            <a class="btn-secondary" href="https://www.google.com/maps/search/?api=1&query=Soler+3644+Palermo+Buenos+Aires" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
+          </div>
+        </div>
+
+        <div class="map-box">
+          <div>
+            <h3>Notas para la versión final</h3>
+            <ul class="check-list">
+              <li>Reemplazar el número de WhatsApp placeholder por el definitivo.</li>
+              <li>Insertar mapa embebido de Google Maps con la ubicación exacta.</li>
+              <li>Agregar fotos reales del frente, recepción y box clínico.</li>
+              <li>Sumar testimonios, reseñas o capturas validadas.</li>
+            </ul>
+          </div>
+          <div class="mini-note">Demo estratégica creada para convertir mejor que una ficha estática o un perfil social disperso.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Demo base para DLT Odontología · Copy, estructura y UX orientados a WhatsApp. Antes de publicar: validar credenciales, horarios, teléfono, reseñas y alcance exacto de servicios.
+    </div>
+  </footer>
+
+  <div class="floating-wa">
+    <a class="btn" href="https://wa.me/5490000000000?text=Hola%20DLT%20Odontolog%C3%ADa%2C%20quisiera%20sacar%20un%20turno." target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  </div>
+</body>
+</html>
